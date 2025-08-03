@@ -1,4 +1,3 @@
-// Canvas.jsx
 'use client'
 
 import { useRef, useState } from 'react'
@@ -11,16 +10,11 @@ export default function Canvas() {
   const canvasRef     = useRef(null)
   const webcamRef     = useRef(null)
 
-  /* state */
   const [strokeColor, setStrokeColor] = useState('#a855f7')
   const [eraseMode, setEraseMode]     = useState(false)
   const [showCam, setShowCam]         = useState(false)
-  const [bgDataURI, setBgDataURI]     = useState(
-    // default transparent PNG 1×1
-    ""
-  )
+  const [bgDataURI, setBgDataURI]     = useState("")
 
-  /* camera helpers */
   const openCamera = async () => {
     try {
       await navigator.mediaDevices.getUserMedia({ video: true })
@@ -30,7 +24,6 @@ export default function Canvas() {
     }
   }
 
-    /* camera helpers */
   const resetBg = async () => {
     try {
       setBgDataURI("")
@@ -45,7 +38,6 @@ export default function Canvas() {
     setShowCam(false)
   }
 
-  /* original helpers */
   const handleColor  = e => setStrokeColor(e.target.value)
   const handlePen    = () => { setEraseMode(false); canvasRef.current?.eraseMode(false) }
   const handleErase  = () => { setEraseMode(true);  canvasRef.current?.eraseMode(true)  }
